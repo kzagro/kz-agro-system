@@ -87,8 +87,46 @@ function kiraBelian() {
   document.getElementById("jumlahBelian")
     .innerText = "Jumlah: RM " +
     (qty * harga).toFixed(2);
+} 
+function simpanPembelian() {
+  const ambil = id =>
+    document.getElementById(id).value;
+
+  const pembekal = ambil("pembekal").trim();
+  const buah = ambil("buah").trim();
+  const unit = ambil("unit");
+  const kuantiti = Number(ambil("kuantiti"));
+  const harga = Number(ambil("harga"));
+
+  if (!pembekal || !buah ||
+      kuantiti <= 0 || harga <= 0) {
+    alert("Sila lengkapkan maklumat pembelian");
+    return;
+  }
+
+  const rekod = JSON.parse(
+    localStorage.getItem("pembelianKZ") || "[]"
+  );
+
+  rekod.push({
+    tarikh: new Date().toLocaleString("ms-MY"),
+    pembekal,
+    buah,
+    unit,
+    kuantiti,
+    harga,
+    jumlah: kuantiti * harga
+  });
+
+  localStorage.setItem(
+    "pembelianKZ",
+    JSON.stringify(rekod)
+  );
+
+  alert("Pembelian berjaya disimpan!");
 }
-</script>
+
+ </script>
 
 </body>
 </html>
