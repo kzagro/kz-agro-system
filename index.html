@@ -45,6 +45,38 @@ h3{color:#176b39}
 <h3>Pekerja & Gaji</h3>
 <button onclick="alert('Modul Pekerja')">Pengurusan Pekerja</button>
 </div>
+</div> 
+<div class="card">
+  <h3>Rekod Pembelian Buah</h3>
+
+  <input id="pembekal" placeholder="Nama pembekal">
+  <input id="buah" placeholder="Jenis buah">
+  <input id="kuantiti" type="number"
+    placeholder="Kuantiti">
+  <input id="harga" type="number"
+    placeholder="Harga seunit (RM)">
+
+  <button onclick="kiraBelian()">
+    Kira Jumlah
+  </button>
+
+  <p id="jumlahBelian"></p>
 </div>
+
+<script>
+function kiraBelian() {
+  let qty = Number(
+    document.getElementById("kuantiti").value
+  );
+  let harga = Number(
+    document.getElementById("harga").value
+  );
+
+  document.getElementById("jumlahBelian")
+    .innerText = "Jumlah: RM " +
+    (qty * harga).toFixed(2);
+}
+</script>
+
 </body>
 </html>
