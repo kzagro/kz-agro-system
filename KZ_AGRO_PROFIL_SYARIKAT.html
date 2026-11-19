@@ -38,4 +38,12 @@ function saveCompanyProfile(){
 }
 function backup(){return `<h2>Backup & Tetapan</h2><div class="panel"><label>Nombor WhatsApp HQ (60...)</label><input id="hqwa" value="${esc(db.settings.whatsapp)}"><button style="margin-top:10px" onclick="db.settings.whatsapp=$('hqwa').value;save()">Simpan Nombor</button></div><div class="panel"><h3>Keselamatan Data</h3><p class="muted">Data disimpan dalam localStorage Safari. Padam data Safari atau tukar peranti boleh menghilangkan rekod. Export backup secara berkala.</p><button onclick="exportData()">Muat Turun Backup JSON</button><label>Import Backup JSON</label><input type="file" id="import" accept="application/json,.json"><button class="secondary" style="margin-top:10px" onclick="importData()">Import Backup</button></div><div class="panel"><h3>Batasan Versi Ini</h3><p>Belum ada log masuk pekerja sebenar, database online, pengesahan bank automatik, resit pelanggan merentas telefon atau sambungan terus ke printer Bluetooth. Cetakan boleh melalui fungsi Print iPhone jika printer menyokong AirPrint.</p></div>`}
 function exportData(){let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(db,null,2)],{type:'application/json'}));a.download='KZ_AGRO_BACKUP_'+today()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),5000)}function importData(){let f=$('import').files[0];if(!f)return alert('Pilih fail JSON');let r=new FileReader;r.onload=()=>{try{let d=JSON.parse(r.result);if(!Array.isArray(d.products)||!Array.isArray(d.sales))throw Error();if(confirm('Ganti semua data versi baharu dengan backup ini?')){db=d;save()}}catch{alert('Fail backup tidak sah')}};r.readAsText(f)}
-render();</script></body></html>
+render();</
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+  const kzSupabase = window.supabase.createClient(
+    "https://evkdpjjynxmcoodxxojb.supabase.co",
+    "sb_publishable_Vu8raeUEtmYKNxNpwv2evg_BL2sHVgO"
+  );
+</script>
+ </body></html>
